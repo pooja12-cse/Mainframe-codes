@@ -1,0 +1,38 @@
+IDENTIFICATION DIVISION.
+PROGRAM-ID. BUBBLE-SORT.
+DATA DIVISION.
+ WORKING-STORAGE SECTION.
+    01 I PIC 9(2).
+    01 J PIC 9(2).
+    01 TEMP PIC 9(2).
+    01 A.
+      03 B PIC 9(2) OCCURS 5 TIMES.
+    01 N PIC 9(1) VALUE 5.
+    01 SWAPPED PIC X.
+    
+PROCEDURE DIVISION.
+    PERFORM VARYING I FROM 1 BY 1 UNTIL I > N
+        DISPLAY "ENTER THE NUMBER:"
+        ACCEPT B(I)
+    END-PERFORM
+    PERFORM VARYING I FROM 1 BY 1 UNTIL I >= N
+       MOVE 'N' TO SWAPPED
+       PERFORM VARYING J FROM 1 BY 1 UNTIL J > N - I
+            IF B(J) > B(J + 1)
+               MOVE B(J) TO TEMP
+               MOVE B(J +1) TO B(J)
+               MOVE TEMP TO B(J+1)
+               MOVE 'Y' TO SWAPPED
+            END-IF
+        END-PERFORM
+        IF SWAPPED ='N'
+            EXIT PERFORM
+        END-IF
+      END-PERFORM
+      DISPLAY "SORTED ARRAY:"
+      PERFORM VARYING I FROM 1 BY 1 UNTIL I > N
+           DISPLAY B(I)
+      END-PERFORM.
+STOP RUN.
+      
+        
