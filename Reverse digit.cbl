@@ -1,0 +1,22 @@
+IDENTIFICATION DIVISION.
+    PROGRAM-ID. REVERSE.
+
+DATA DIVISION.
+    WORKING-STORAGE SECTION.
+      01 N     PIC 9(5).
+      01 TEMP    PIC 9(5).
+      01 DIGIT   PIC 9.
+      01 REV     PIC 9(5) VALUE 0.
+
+PROCEDURE DIVISION.
+    DISPLAY "Enter 5 digit number: ".
+    ACCEPT N.
+    MOVE N TO TEMP.
+    PERFORM UNTIL TEMP = 0
+         DIVIDE TEMP BY 10
+             GIVING TEMP
+              REMAINDER DIGIT
+              COMPUTE REV = (REV * 10) + DIGIT
+    END-PERFORM.
+    DISPLAY "Reversed Number: " REV.
+    STOP RUN.
